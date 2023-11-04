@@ -24,10 +24,10 @@ start();
 
 function createBreedList(breedList) {
   document.getElementById("breed").innerHTML = `
-     <select onchange="loadByBreed(this.value)">
-        <option> Choose a dog breed </option>
+     <select onfocus='this.size=10;' onblur='this.size=0;' onchange='this.size=1; this.blur();loadByBreed(this.value);'>
+        <option style="background-color: #DBC0B0"> Choose a dog breed </option>
         ${Object.keys(breedList).map(function (breed) {
-          return `<option> ${breed} </option>`;
+          return `<option class="option"> ${breed} </option>`;
         })}
       </select>
     `;
@@ -73,6 +73,7 @@ function createSlideshow(images) {
     deletFirstPhotoDelay = setTimeout(function () {
       document.querySelector(".slide").remove();
     }, 1000);
+
     if (currentPossition + 1 >= images.length) {
       currentPossition = 0;
     } else {
